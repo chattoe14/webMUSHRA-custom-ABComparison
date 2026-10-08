@@ -176,7 +176,7 @@ $input = array("session_test_id");
 for($i =0; $i < $length; $i++){
 	array_push($input, $session->participant->name[$i]);
 }
-array_push($input,  "trial_id", "rating_reference", "rating_non_reference", "rating_reference_score", "rating_non_reference_score", "rating_time", "choice_comment");
+array_push($input,  "trial_id", "audio_A", "audio_B", "rating_Q1", "rating_Q2", "rating_Q3", "rating_time", "choice_comment");
 array_push($bs1116CsvData, $input);
 
 // array_push($bs1116CsvData, array("session_test_id", "participant_email", "participant_age", "participant_gender", "trial_id", "rating_reference", "rating_non_reference", "rating_reference_score", "rating_non_reference_score", "rating_time", "choice_comment"));
@@ -189,7 +189,7 @@ foreach ($session->trials as $trial) {
 		for($i =0; $i < $length; $i++){
 			array_push($results, $session->participant->response[$i]);
 		}  
-		array_push($results, $trial->id, $response->reference, $response->nonReference, $response->referenceScore, $response->nonReferenceScore, $response->time, $response->comment);
+		array_push($results, $trial->id, $response->audioA, $response->audioB, $response->firstQuestionScore, $response->secondQuestionScore, $response->thirdQuestionScore, $response->time, $response->comment);
 	  
 	  	array_push($bs1116CsvData, $results); 
 		  

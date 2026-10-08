@@ -1,0 +1,128 @@
+# test config: Custom blind AB test, no looping
+# This page was made for an MMT thesis project on spatial audio. Please customise as needed.
+
+# To run: php -S localhost:8000
+# Then in browser, it can be found at http://localhost:8000/?config=Custom_AB_Tests.yaml
+
+testname: Custom AB Listening Test
+testId: testing17! #Participant number - must be changed for each new participant (otherwise the results will be overwritten)
+bufferSize: 2048
+stopOnErrors: true
+showButtonPreviousPage: true
+remoteService: service/write.php
+
+
+pages:
+    - type: generic
+      id: first_page
+      name: Welcome
+      content: Thank You for Participating!
+
+
+# Change the rating prompts in the lib/webmushra/pages/BS1116Page.js, lines 165-179
+# Add audio extracts to configs/audio and then add their file paths below. 
+
+# ====================================================================================================
+# !!!!! Both reference and stimuli are both actually stimuli here! It is just that one of your stimuli 
+# must be put in the reference field. They are randomised to be audio A and audio B but will be listed
+# in the results so you know which one was rated higher.
+# ====================================================================================================
+
+
+# Pages are below. Add new ones as needed (template at bottom of document)
+    -
+          - random #pages are randomly presented
+          - type: bs1116
+            id: test_1
+            name: Test 1
+            content: Please listen to the extracts and answer the questions with the sliding scale
+            showWaveform: true
+            enableLooping: false
+            reference: configs/resources/audio/mono_c1.wav
+            createAnchor35: false
+            createAnchor70: false
+            stimuli:
+                C1: configs/resources/audio/mono_c2.wav
+          - type: bs1116
+            id: test_2
+            name: Test 2
+            content: Please listen to the extracts and answer the questions with the sliding scale
+            showWaveform: true
+            enableLooping: false
+            reference: configs/resources/audio/mono_c1.wav
+            createAnchor35: false
+            createAnchor70: false
+            stimuli:
+                C1: configs/resources/audio/mono_c2.wav
+          - type: bs1116
+            id: test_2
+            name: Test 2
+            content: Please listen to the extracts and answer the questions with the sliding scale
+            showWaveform: true
+            enableLooping: false
+            reference: configs/resources/audio/mono_c1.wav
+            createAnchor35: false
+            createAnchor70: false
+            stimuli:
+                C1: configs/resources/audio/mono_c2.wav
+          - type: bs1116
+            id: test_2
+            name: Test 2
+            content: Please listen to the extracts and answer the questions with the sliding scale
+            showWaveform: true
+            enableLooping: false
+            reference: configs/resources/audio/mono_c1.wav
+            createAnchor35: false
+            createAnchor70: false
+            stimuli:
+                C1: configs/resources/audio/mono_c2.wav
+
+    - type: finish
+      name: Thank you
+      content: Thank you for taking part!
+      showResults: true
+      writeResults: true
+      questionnaire:
+          - type: likert
+            name: experience
+            label: How much experience do you have with spatial audio? #change as needed
+            response:
+             - value: Extensive experience
+               label: Extensive experience
+             - value: Moderate experience
+               label: Moderate experience
+             - value: A little experience
+               label: A little experience
+             - value: No experience
+               label: No experience
+          - type: likert
+            name: age
+            label: Age
+            response:
+             - value: 18-23
+               label: 18-23
+             - value: 24-29
+               label: 24-29
+             - value: 30-40
+               label: 30-40
+             - value: 40-50
+               label: 40-50
+             - value: 50+
+               label: 50+
+      endTest: true
+
+
+# Alter this and paste above for as many page comparisons as you have. 
+# Your audio files must be saved in the resources folder and then the file names pasted below.
+
+# - type: bs1116
+#       id: test_x
+#       name: Test x
+#       content: Please listen to the extracts and answer the questions with the sliding scale.
+#       showWaveform: true
+#       enableLooping: false
+#       reference: configs/resources/....wav
+#       createAnchor35: false
+#       createAnchor70: false
+#       stimuli:
+#           C1: configs/resources/....wav
